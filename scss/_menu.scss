@@ -1,0 +1,139 @@
+//Menu Button
+
+.menu-btn {
+  position: absolute;
+  z-index: 3;
+  right: 35px;
+  top: 35px;
+  cursor: pointer;
+  @include easeOut();
+
+  .btn-line {
+    width: 28px;
+    height: 3px;
+    margin: 0 0 5px 0;
+    background: set-text-color($primary-color);
+    @include easeOut();
+  }
+  //Rotate Into X with menu lines
+  &.close {
+    transform: rotate(180deg);
+
+    .btn-line {
+      //pseudo child classes to select
+
+      //line 1 - Rotate
+      &:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      //line 2 - hide
+      &:nth-child(2) {
+        opacity: 0;
+      }
+      //line 3 - Rotate
+      &:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+    }
+  }
+}
+
+// Menu Overlay
+
+.menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  visibility: hidden;
+
+  &.show {
+    visibility: visible;
+  }
+
+  &-branding,
+  &-nav {
+    //flex makes nav into columns
+    display: flex;
+    flex-flow: column wrap;
+    //centers items in the nav
+    align-items: center;
+    justify-content: center;
+    float: left;
+    width: 50%;
+    height: 100vh;
+    //no scroll bars
+    overflow: hidden;
+  }
+
+  &-nav {
+    opacity: 0.9;
+    margin: 0;
+    padding: 0;
+    background: darken($primary-color, 5);
+    //takes away bullet points
+    list-style: none;
+    transform: translate3d(0, -100%, 0);
+    @include easeOut;
+
+    &.show {
+      //slide in from top
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  //Branding side
+  &-branding {
+    //opacity passes inheritance to children - use rgba
+    background-color: rgba(68, 68, 68, 0.9);
+    transform: translate3d(0, 100%, 0);
+    @include easeOut;
+    //slides in from left
+    &.show {
+      transform: translate3d(0, 0, 0);
+    }
+
+    .portrait {
+      width: 250px;
+      height: 250px;
+      background: url("../img/portrait.jpg");
+      background-position: 24% 25%;
+      border-radius: 50%;
+      border: solid 3px #118c8b;
+    }
+  }
+  .nav-item {
+    transform: translate3d(600px, 0, 0);
+    @include easeOut;
+    //slide in from right
+    &.show {
+      transform: translate3d(0, 0, 0);
+    }
+    &.current > a {
+      color: $secondary-color;
+    }
+  }
+  .nav-link {
+    display: inline-block;
+    position: relative;
+    font-size: 30px;
+    text-transform: uppercase;
+    padding: 1rem;
+    font-weight: 300;
+    color: set-text-color($primary-color);
+    text-decoration: none;
+    @include easeOut;
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}
+
+// Delay each nav item slide by 0.1 seconds
+//for loop in sass
+@for $x from 1 through 4 {
+  //each nth-child
+  .nav-item:nth-child(#{$x}) {
+    //multiplies each child by .1s for delayed fly-in effect
+    transition-delay: $x * 0.1s;
+  }
+}

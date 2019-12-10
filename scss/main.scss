@@ -1,0 +1,244 @@
+@import "config";
+@import "menu";
+
+//selects everything -- padding wont affect height or width
+* {
+  box-sizing: border-box;
+}
+
+body {
+  @include background;
+  background: $primary-color;
+  color: set-text-color($primary-color);
+  height: 100%;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  //space between lines
+  line-height: 1.5;
+}
+
+//Headings
+h1,
+h2,
+h3 {
+  margin: 0;
+  //makes font thinner
+  font-weight: 400;
+
+  //ampersand targets class of headings with class
+  &.lg-heading {
+    //rem is 6 * default size (16 px)
+    font-size: 6rem;
+  }
+
+  &.sm-heading {
+    margin-bottom: 2rem;
+    padding: 0.2rem 1rem;
+    //lighten takes in primary color and how much to lighten
+    //rgba function toggles opacity
+    background: rgba(lighten($primary-color, 2), 0.5);
+  }
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+header {
+  //header fixed always keeps it at the top
+  position: fixed;
+  //how close to you element is..bigger number closer to user
+  z-index: 2;
+  width: 100%;
+}
+
+.text-secondary {
+  color: $secondary-color;
+}
+
+main {
+  padding: 4rem;
+  //height: 100%;
+  // calculates viewport height for webiste body - 60px for footer
+  //sticky footer
+  min-height: calc(100vh - 60px);
+
+  .icons {
+    margin-top: 1rem;
+    //aligngs icons from the left horizontal
+    float: left;
+
+    a {
+      padding: 0.4rem;
+      color: set-text-color($primary-color);
+
+      &:hover {
+        color: $secondary-color;
+        @include easeOut();
+      }
+    }
+  }
+  &#home {
+    // no scrollbars on main page
+    overflow: hidden;
+    h1 {
+      //vh is viewport height out of 100.
+      margin-top: 20vh;
+    }
+  }
+}
+
+//About page
+
+.about-info {
+  display: grid;
+  grid-gap: 30px;
+  //maps out grid for text areas on screen
+  grid-template-areas:
+    "bioimage bio bio"
+    "job1 job2 job3";
+  grid-template-columns: 1fr, 1fr, 1fr;
+  .bio-image {
+    grid-area: bioimage;
+    object-fit: none;
+    object-position: 27% 20%;
+    width: 175px;
+    height: 175px;
+    margin: auto;
+    border-radius: 50%;
+    border: #118c8b 3px solid;
+  }
+
+  .bio {
+    grid-area: bio;
+  }
+
+  .job {
+    background: lighten($primary-color, 5);
+    padding: 0.5rem;
+    border-bottom: $secondary-color 5px solid;
+  }
+
+  .job-1 {
+    grid-area: job1;
+  }
+  .job-2 {
+    grid-area: job2;
+  }
+  .job-3 {
+    grid-area: job3;
+  }
+}
+
+// Work/Projects
+.projects {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+
+  img {
+    //shrinks down images
+    width: 100%;
+    border: 3px #fff solid;
+
+    &:hover {
+      opacity: 0.5;
+      border-color: $secondary-color;
+      @include easeOut;
+    }
+  }
+}
+
+// Individual Projects Page
+.project-info {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+
+  img {
+    //shrinks down images
+    width: 100%;
+    border: 3px #fff solid;
+  }
+}
+
+.back {
+  color: $secondary-color;
+  &:hover {
+    color: #fff;
+    @include easeOut;
+  }
+}
+
+.view {
+  color: #fff;
+  &:hover {
+    color: $secondary-color;
+    @include easeOut;
+  }
+}
+
+//Contact Page
+
+.boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 1rem;
+
+  div {
+    font-size: 2rem;
+    border: 3px #fff solid;
+    border-radius: 25px;
+    padding: 1.5rem 2.5rem;
+    margin-bottom: 3rem;
+    @include easeOut;
+
+    &:hover {
+      padding: 0.5rem 1.5;
+      background: $secondary-color;
+      color: set-text-color($secondary-color);
+
+      span {
+        color: set-text-color($secondary-color);
+      }
+    }
+  }
+}
+//Button Styles
+
+.btn {
+  display: block;
+  padding: 0.5rem 1rem;
+  border: 0;
+  margin-bottom: 0.3rem;
+  &:hover {
+    background: $secondary-color;
+    color: set-text-color($secondary-color);
+  }
+}
+//extends .btn class
+.btn-dark {
+  @extend .btn;
+  background: darken($primary-color, 50);
+  color: #fff;
+}
+
+.btn-light {
+  @extend .btn;
+  background: lighten($primary-color, 50);
+  color: #333;
+}
+
+#main-footer {
+  text-align: center;
+  padding: 1rem;
+  background: darken($primary-color, 10);
+  color: set-text-color($primary-color);
+  height: 60px;
+}
+
+//import after inital CSS loads
+@import "mobile";

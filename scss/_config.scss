@@ -1,0 +1,72 @@
+$primary-color: #444;
+$secondary-color: #f2746b; //eece1a
+$show-home-image: true;
+$home-image: url(../img/sunset.jpg);
+$background-opacity: 0.8;
+@mixin easeOut {
+  //creates color transition on hover
+  //.5 seconds to ease out color
+  //nav slides away at .5 seconds
+  transition: all 0.5s ease-out;
+}
+//if show home image is true targets bg-img
+@mixin background {
+  @if $show-home-image {
+    &#bg-img {
+      background: $home-image;
+      background-attachment: fixed;
+      background-size: cover;
+      overflow: hidden;
+
+      //pseudo-element that creates overlay without inline HTML
+      &:after {
+        //covers the whole body
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: rgba($primary-color, $background-opacity);
+      }
+    }
+  }
+}
+
+// Set Text color depending on background color
+@function set-text-color($color) {
+  @if (lightness($color) > 40) {
+    @return #000;
+  } @else {
+    @return #fff;
+  }
+}
+
+// Media Query Mixins
+
+@mixin mediaSm {
+  //any css inside will only apply if screen is 500px or less
+  @media screen and (max-width: 500px) {
+    @content;
+  }
+}
+
+@mixin mediaMd {
+  //any css inside will only apply if screen is 768 or less
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin mediaLg {
+  //any css inside will only apply if screen is between 769px & 1170
+  @media screen and (min-width: 769px) and (max-width: 1170px) {
+    @content;
+  }
+}
+@mixin mediaXL {
+  @media screen and (min-width: 1171px) {
+    @content;
+  }
+}

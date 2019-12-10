@@ -1,0 +1,103 @@
+// Wide Screens
+@include mediaXL {
+  .projects {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// Desktops and Laptops
+@include mediaLg {
+  .lg-heading {
+    font-size: 5rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .projects {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+//Tablets & Small Laptops
+@include mediaMd {
+  main {
+    align-items: center;
+    text-align: center;
+
+    .lg-heading {
+      font-size: 5rem;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .sm-heading {
+      margin-bottom: 1rem;
+    }
+  }
+  ul.menu-nav,
+  div.menu-branding {
+    float: none;
+    width: 100%;
+    min-height: 0;
+
+    &.show {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  .menu-nav {
+    height: 75vh;
+    //comes in from left
+    transform: translate3d(-100%, 0, 0);
+    font-size: 24px;
+  }
+
+  .menu-branding {
+    //on small portrait/branding sit on top at 25 view port heights
+    height: 25vh;
+    //comes in from right
+    transform: translate3d(100%, 0, 0);
+    .portrait {
+      width: 150px;
+      height: 150px;
+      background-position: 28% 20%;
+    }
+  }
+  .about-info {
+    //changes grid to stacked if screen is small
+    grid-template-areas:
+      "bioimage"
+      "bio"
+      "job1"
+      "job2"
+      "job3";
+
+    grid-template-columns: 1fr;
+  }
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .project-info {
+    grid-template-columns: 1fr;
+  }
+}
+
+//Smartphones
+@include mediaSm {
+  main {
+    padding: 2rem;
+    #home h1 {
+      margin-top: 10vh;
+    }
+    .lg-heading {
+      margin-top: 1rem;
+      font-size: 3rem;
+    }
+    .sm-heading {
+      margin-bottom: 1rem;
+    }
+  }
+  .projects {
+    grid-template-columns: 1fr;
+  }
+  .project-info {
+    grid-template-columns: 1fr;
+  }
+}
