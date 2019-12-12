@@ -14,9 +14,12 @@ export default {
       },
       {
         id: "1",
-        name: "Job 2",
-        position: "Position",
-        description: ""
+        name: "Treehouse Student",
+        position: "Student",
+        description: `The Full Stack JavaScript Techdegree provides a comprehensive
+                      education in the basics of the JavaScript language and its use
+                      in front end user experience and back end application development
+                      using Node and Express.`
       },
       {
         id: "2",
@@ -27,8 +30,9 @@ export default {
     ],
     bio: `Kyle is a world-traveling hospitatlity veteran turned
       Full Stack JavaScript Web Developer located in the San
-      Francisco Bay Area. He is currently a Student-Dev Moderator at Team Treehouse
-      and enjoys helping his fellow students learn how to code.
+      Francisco Bay Area. He graduated from UC-Berkeley in 2014 and
+      is currently a Student-Developer Moderator at Team Treehouse, where
+      he enjoys helping his fellow students learn how to code.
       \n
       \nWhen Kyle is not coding, you can find him hiking, traveling to far away lands,
       vainly attempting to dance salsa, or training in the gym.

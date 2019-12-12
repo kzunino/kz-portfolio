@@ -1,5 +1,7 @@
 import React from "react";
 
 export default () => {
-  return <footer id="main-footer">Copyright © 2018</footer>;
+  let d = new Date();
+  let date = d.getFullYear();
+  return <footer id="main-footer">Copyright © {date}</footer>;
 };
